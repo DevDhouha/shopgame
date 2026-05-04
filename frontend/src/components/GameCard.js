@@ -17,10 +17,7 @@ function ReviewModal({ game, show, onClose }) {
     if (!show) return;
     setSubmitted(false);
     setLoaded(false);
-    // getReviews(game._id).then(res => {
-    //   setReviews(res.data);
-    //   setLoaded(true);
-    // });
+ 
   }, [show, game._id]);
 
   const handleSubmit = async (e) => {
@@ -52,34 +49,7 @@ function ReviewModal({ game, show, onClose }) {
 
       {/* ── Body ── */}
       <Modal.Body>
-        {/* <p className="modal__subtitle">
-          {reviews.length} review{reviews.length !== 1 ? "s" : ""} · {stars(game.rating)}
-        </p> */}
-
-        {/* ── Reviews List ── */}
-        {/* <div className="modal__reviews">
-          {!loaded ? (
-            <p className="modal__no-reviews">Loading...</p>
-          ) : reviews.length === 0 ? (
-            <p className="modal__no-reviews">No reviews yet. Be the first! 🎮</p>
-          ) : (
-            reviews.map(r => (
-              <div key={r._id} className="modal__review-item">
-                <div className="modal__review-header">
-                  <span className="modal__review-author">{r.author}</span>
-                  <span className="modal__review-stars">{stars(r.rating)}</span>
-                </div>
-                <p className="modal__review-comment">{r.comment}</p>
-              </div>
-            ))
-          )}
-        </div> */}
-
-        {/* ── Divider ── */}
-        {/* <hr className="modal__divider" /> */}
-
-        {/* ── Add Review Form ── */}
-        {/* <p className="modal__form-title">ADD YOUR REVIEW</p> */}
+      
 
         {!submitted ? (
           <form onSubmit={handleSubmit} className="modal__form">
