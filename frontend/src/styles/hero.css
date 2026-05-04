@@ -1,0 +1,171 @@
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 0 5%;
+  background: var(--bg);
+}
+
+/* ── Slider ─────────────────────────────────── */
+.hero__slider {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero__slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1.2s ease;
+}
+
+.hero__slide.active {
+  opacity: 1;
+}
+
+/* Dark overlay on top of images */
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+/* Grid texture */
+.hero__grid {
+  position: absolute;
+  inset: 0;
+  background-size: 60px 60px;
+  opacity: 0.2;
+  z-index: 2;
+}
+
+/* ── Content ─────────────────────────────────── */
+.hero__content {
+  position: relative;
+  z-index: 3;
+  max-width: 650px;
+}
+
+.hero__tag {
+  color: var(--accent);
+  font-family: "Bebas Neue", sans-serif;
+  letter-spacing: 4px;
+  font-size: 1rem;
+  margin-bottom: 16px;
+  background: #ff000047;
+  border-radius: 20px;
+  padding: 3px 13px;
+  width: 250px;
+}
+
+.hero__title {
+  font-size: clamp(3rem, 8vw, 6rem);
+  line-height: 0.95;
+  margin-bottom: 24px;
+  color: var(--text);
+}
+
+.hero__title span {
+  color: var(--accent);
+}
+
+.hero__subtitle {
+  color: #f0e5e5;
+  font-size: 1.75rem;
+  line-height: 1.7;
+  margin-bottom: 40px;
+  font-weight: 500;
+}
+
+/* ── Buttons ─────────────────────────────────── */
+.hero__buttons {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: #fff;
+  padding: 11px 40px;
+  font-size: 1.1rem;
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-family: "Bebas Neue", sans-serif;
+  letter-spacing: 1.5px;
+  transition: background 0.3s;
+  display: inline-block;
+  height: 45px;
+}
+
+.btn--primary:hover {
+  background: #fff;
+  color:var(--accent)
+}
+
+.btn--outline {
+  background: #ffffff;
+  color: var(--accent);
+  padding: 11px 38px;
+  font-size: 1.1rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  text-decoration: none;
+  font-family: "Bebas Neue", sans-serif;
+  letter-spacing: 1.5px;
+  transition: border-color 0.3s;
+  display: inline-block;
+  height: 45px;
+}
+
+.btn--outline:hover {
+  border-color: var(--accent);
+}
+
+/* ── Slider dots ─────────────────────────────── */
+.hero__dots {
+  display: flex;
+  gap: 10px;
+}
+
+.hero__dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--border);
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+  padding: 0;
+  position: relative;
+  left: 100%;
+}
+
+.hero__dot.active {
+  background: var(--accent);
+  transform: scale(1.3);
+}
+
+/* ── Slide counter ───────────────────────────── */
+.hero__counter {
+  position: absolute;
+  bottom: 40px;
+  right: 5%;
+  z-index: 4;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1rem;
+  letter-spacing: 3px;
+  color: var(--muted);
+}
+
+.hero__counter span {
+  color: var(--accent);
+  font-size: 1.4rem;
+}

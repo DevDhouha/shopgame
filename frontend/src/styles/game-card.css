@@ -1,0 +1,404 @@
+
+.game-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.game-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--accent);
+  box-shadow: 0 20px 40px rgba(230, 57, 70, 0.15);
+}
+
+/* ── Image ── */
+.game-card__image-wrapper {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.game-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.game-card:hover .game-card__image {
+  transform: scale(1.05);
+}
+
+.game-card__platform {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: var(--accent);
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.game-card__featured {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: var(--accent2);
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.game-card__no-image {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1a0a0f, #0a0a1f);
+  font-size: 3rem;
+}
+
+/* ── Body ── */
+.game-card__body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.game-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.game-card__title {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+  color: var(--text);
+}
+
+.game-card__price {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1.3rem;
+  color: var(--accent2);
+  white-space: nowrap;
+}
+
+.game-card__genre {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.game-card__description {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #ccc;
+  margin-bottom: 16px;
+  flex: 1;
+}
+
+/* ── Stars (clickable) ── */
+.game-card__stars {
+  color: #f4c430;
+  font-size: 1.1rem;
+  margin-bottom: 16px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.2s;
+  width: fit-content;
+}
+
+.game-card__stars:hover {
+  transform: scale(1.1);
+}
+
+.game-card__stars-hint {
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-family: "Barlow", sans-serif;
+  letter-spacing: 0px;
+}
+
+/* ── Download Button ── */
+.game-card__download {
+  width: 100%;
+  background: var(--accent);
+  border: none;
+  color: #fff;
+  padding: 12px;
+  border-radius: var(--radius);
+  font-family: "Bebas Neue", sans-serif;
+  letter-spacing: 1.5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.game-card__download:hover {
+  background: var(--accent2);
+}
+
+/* ── Modal Overlay ── */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(6px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Modal Box ── */
+.modal {
+  background:#1a1a26d1;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 32px;
+  animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 1; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+.modal__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  font-size: 1.4rem;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.modal__close:hover {
+  color: var(--accent);
+}
+
+.modal__title {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1.6rem;
+  letter-spacing: 2px;
+  margin-bottom: 4px;
+  color: var(--text);
+}
+
+.modal__game-name {
+  color: var(--accent);
+}
+
+.modal__subtitle {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-bottom: 24px;
+}
+
+/* ── Reviews List ── */
+.modal__reviews {
+  max-height: 200px;
+  overflow-y: auto;
+  margin-bottom: 24px;
+  padding-right: 4px;
+}
+
+.modal__reviews::-webkit-scrollbar {
+  width: 4px;
+}
+
+.modal__reviews::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 4px;
+}
+
+.modal__review-item {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+}
+
+.modal__review-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.modal__review-author {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.modal__review-stars {
+  color: #f4c430;
+  font-size: 0.85rem;
+}
+
+.modal__review-comment {
+  color: var(--muted);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+.modal__no-reviews {
+  color: var(--muted);
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 16px 0;
+}
+
+/* ── Review Form ── */
+.modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  /* border-top: 1px solid var(--border); */
+  padding-top: 20px;
+}
+
+.modal__form-title {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 1.5px;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.modal__input {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  font-size: 0.9rem;
+  font-family: "Barlow", sans-serif;
+  outline: none;
+  transition: border 0.3s;
+  width: 100%;
+}
+
+.modal__input:focus {
+  border-color: var(--accent);
+}
+
+.modal__select {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: var(--radius);
+  padding: 12px 14px;
+  font-size: 0.9rem;
+  font-family: "Barlow", sans-serif;
+  outline: none;
+  width: 100%;
+  cursor: pointer;
+}
+
+.modal__submit {
+  background: var(--accent);
+  color: #fff;
+  padding: 14px;
+  border-radius: var(--radius);
+  border: none;
+  font-family: "Bebas Neue", sans-serif;
+  letter-spacing: 1.5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.modal__submit:hover {
+  background: var(--accent2);
+}
+
+.modal__success {
+  color: #2ecc71;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1.1rem;
+  text-align: center;
+  letter-spacing: 1px;
+}
+.modal-custom {
+  background: var(--card) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+  color: var(--text) !important;
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  z-index: 99999 !important;
+  width: 500px;
+}
+
+.modal-custom .modal-header {
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+}
+
+.modal-custom .modal-body {
+  background: var(--card);
+  color: var(--text);
+}
+
+.modal-custom .modal-footer {
+  background: var(--card);
+  border-top: 1px solid var(--border);
+}
+
+.modal-custom .btn-close {
+  filter: invert(1);
+}
+
+/* ── Bootstrap Modal Backdrop ── */
+.modal-backdrop {
+  position: fixed !important;
+  z-index: 99998 !important;
+}
+
+.modal-backdrop.show {
+  opacity: 0.5 !important;
+}
+
+.modal__divider {
+  border-color: var(--border);
+  margin: 20px 0;
+}
