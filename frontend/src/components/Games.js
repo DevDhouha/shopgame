@@ -1,19 +1,23 @@
 
 import React, { useEffect, useState } from "react";
-import { getGames } from "../api";
+import { getGames,getPlatforms } from "../api";
 import GameCard from "./GameCard";
 import "../styles/game.css";
 
-const PLATFORMS = ["All", "PC", "PS5", "Xbox", "Mobile"];
+
 
 export default function Games() {
   const [games, setGames]     = useState([]);
+  const [platforms, setPlatforms] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter]   = useState("All");
 
   useEffect(() => {
-    getGames()
-      .then(res => setGames(res.data))
+    Promise.all([getGames(), getPlatforms()])
+      .then(([gamesRes, platsRes]) => {
+        setGames(gamesRes.data);
+        setPlatforms(platsRes.data);
+      })
       .catch(err => console.error(err))
       .finally(() => setLoading(false));
   }, []);
@@ -28,13 +32,13 @@ export default function Games() {
 
       {/* ── Filter Buttons ── */}
       <div className="games__filters">
-        {PLATFORMS.map(p => (
-          <button
-            key={p}
-            onClick={() => setFilter(p)}
-            className={`games__filter-btn ${filter === p ? "active" : ""}`}
+        {platforms.map(p => (
+            <button
+            key={p._id}
+            onClick={() => setFilter(p.name)}
+            className={`games__filter-btn ${filter === p.name ? "active" : ""}`}
           >
-            {p}
+            {p.icon} {p.name}
           </button>
         ))}
       </div>

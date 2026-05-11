@@ -10,10 +10,13 @@ app.use(cors());
 app.use(express.json());
 
 // ─── Routes ──────────────────────────────────────
+app.use("/api/auth",       require("./routes/auth"));
 app.use("/api/games",   require("./routes/games"));
 app.use("/api/reviews", require("./routes/reviews"));
 app.use("/api/contact", require("./routes/contact"));
-
+app.use("/api/categories", require("./routes/categories"));
+app.use("/api/platforms",  require("./routes/platforms"));
+app.use("/api/stats",      require("./routes/stats"));
 // ─── Health check ────────────────────────────────
 app.get("/api/health", (req, res) => {
   res.json({ status: "ShopGame API is running 🎮" });

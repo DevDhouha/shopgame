@@ -1,5 +1,6 @@
 const router  = require("express").Router();
 const Game    = require("../models/Game");
+const { protect } = require("../middleware/auth");
 
 // GET all games
 router.get("/", async (req, res) => {
@@ -23,7 +24,7 @@ router.get("/:id", async (req, res) => {
 });
 
 // POST create game
-router.post("/", async (req, res) => {
+router.post("/", protect, async (req, res) => {
   try {
     const game = await Game.create(req.body);
     res.status(201).json(game);
@@ -32,8 +33,23 @@ router.post("/", async (req, res) => {
   }
 });
 
+// PUT update game
+router.put("/:id", protect, async (req, res) => {
+  try {
+    const game = await Game.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    );
+    if (!game) return res.status(404).json({ message: "Game not found" });
+    res.json(game);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+});
+
 // DELETE game
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", protect, async (req, res) => {
   try {
     await Game.findByIdAndDelete(req.params.id);
     res.json({ message: "Game deleted" });

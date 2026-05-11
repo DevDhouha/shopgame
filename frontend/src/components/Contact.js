@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import emailjs from "emailjs-com";
 import Swal from "sweetalert2";
 import "../styles/contact.css";
-
+import { sendContact } from "../api";
 const SERVICE_ID  = process.env.REACT_APP_EMAILJS_SERVICE_ID;
 const TEMPLATE_ID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
 const PUBLIC_KEY  = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
@@ -27,6 +27,11 @@ export default function Contact() {
     setLoading(true);
 
     try {
+           await sendContact({
+        name:    form.from_name,
+        email:   form.from_email,
+        message: form.message,
+      }); 
      await emailjs.send(
         SERVICE_ID,
         TEMPLATE_ID,

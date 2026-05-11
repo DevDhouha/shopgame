@@ -42,6 +42,7 @@ services:
       - MONGO_URI=mongodb://mongo:27017/shopgame
       - PORT=5000
       - NODE_ENV=development
+      - JWT_SECRET=shopgame_jwt_secret_key_2026
     ports:
       - "5000:5000"
     depends_on:
