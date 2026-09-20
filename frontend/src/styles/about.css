@@ -1,0 +1,44 @@
+.about
+{
+    border-top: "1px solid var(--border)";
+}
+.about-content
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+
+}
+.about-text
+{
+    color: var(--muted);
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+.about-stats
+{
+    display: flex;
+    gap: 24px;
+}
+.about-stat
+{
+    flex: 1;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 20px;
+    text-align: center;
+}
+.about-stat-value
+{
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    color: var(--accent);
+}
+.about-stat-label
+{
+    color: var(--muted);
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+}
